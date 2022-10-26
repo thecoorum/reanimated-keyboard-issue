@@ -1,11 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { TextInput, View } from "react-native";
+
+import { useAnimatedKeyboard } from "react-native-reanimated";
 
 export default function App() {
+  const keyboard = useAnimatedKeyboard();
+
+  // Should update on switching between keyboard types
+  console.log(keyboard.height.value);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <TextInput style={styles.input} keyboardType="default" />
+      <TextInput style={styles.input} keyboardType="number-pad" />
     </View>
   );
 }
@@ -13,8 +19,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    padding: 20
   },
+  input: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+    marginBottom: 20
+  }
 });
